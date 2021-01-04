@@ -33,9 +33,27 @@ export default function App() {
       <canvas ref={canvasRef} />
 
       <div className="arrows">
-        <button>Up</button>
-        <button>Left</button>
-        <button>Down</button>
+        <button
+          onClick={() => {
+            setY((y) => y - 20);
+          }}
+        >
+          Up
+        </button>
+        <button
+          onClick={() => {
+            setX((x) => x - 20);
+          }}
+        >
+          Left
+        </button>
+        <button
+          onClick={() => {
+            setY((y) => y + 20);
+          }}
+        >
+          Down
+        </button>
         <button
           onClick={() => {
             setX((x) => x + 20);
