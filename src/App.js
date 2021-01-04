@@ -1,10 +1,12 @@
-import React from 'react';
-import './App.css';
+import React, { useRef } from "react";
+import "./App.css";
 
 export default function App() {
+  const canvasRef = useRef(null);
+
   return (
     <div className="app">
-      <canvas />
+      <canvas ref={canvasRef} />
 
       <div className="arrows">
         <button>Up</button>
