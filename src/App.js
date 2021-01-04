@@ -1,13 +1,22 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 export default function App() {
   const canvasRef = useRef(null);
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
 
+  //set the height and width of the canvas
   useEffect(() => {
     const context = canvasRef.current.getContext("2d");
     context.canvas.height = window.innerHeight;
     context.canvas.width = window.innerWidth;
+  }, []);
+
+  //move the box if x or y changes
+  useEffect(() => {
+    const context = canvasRef.current.getContext("2d");
+    context.fillRect(x, y, 100, 100);
   });
 
   return (
