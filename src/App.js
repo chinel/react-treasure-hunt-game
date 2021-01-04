@@ -1,8 +1,14 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./App.css";
 
 export default function App() {
   const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const context = canvasRef.current.getContext("2d");
+    context.canvas.height = window.innerHeight;
+    context.canvas.width = window.innerWidth;
+  });
 
   return (
     <div className="app">
