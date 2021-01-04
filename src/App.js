@@ -7,6 +7,7 @@ export default function App() {
   const [y, setY] = useState(0);
 
   //set the height and width of the canvas
+  //mimics componentDidMount
   useEffect(() => {
     const context = canvasRef.current.getContext("2d");
     context.canvas.height = window.innerHeight;
@@ -14,10 +15,18 @@ export default function App() {
   }, []);
 
   //move the box if x or y changes
+  //mimics componentDidUpdate
   useEffect(() => {
     const context = canvasRef.current.getContext("2d");
+    context.clearRect(
+      0,
+      0,
+      window.innerWidth,
+      window.innerHeight,
+      window.innerWidth
+    ); //this logic here allows us to be able to move the canvas without drawing  a new one
     context.fillRect(x, y, 100, 100);
-  });
+  }, [x, y]);
 
   return (
     <div className="app">
