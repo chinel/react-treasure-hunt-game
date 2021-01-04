@@ -27,7 +27,13 @@ export default function App() {
         <button>Up</button>
         <button>Left</button>
         <button>Down</button>
-        <button>Right</button>
+        <button
+          onClick={() => {
+            setX((x) => x + 20);
+          }}
+        >
+          Right
+        </button>
       </div>
 
       <div className="images">
