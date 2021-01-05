@@ -33,7 +33,12 @@ export default function App() {
     window.addEventListener("keydown", handleKeyDown);
 
     function handleKeyDown(e) {
-      console.log(e.keyCode, e);
+      //console.log(e.keyCode, e);
+      console.log(e.key, e);
+      if (e.key === "ArrowUp") setY((y) => y - 20);
+      if (e.key === "ArrowLeft") setX((x) => x - 20);
+      if (e.key === "ArrowDown") setY((y) => y + 20);
+      if (e.key === "ArrowRight") setX((x) => x + 20);
     }
 
     return () => window.removeEventListener("keydown", handleKeyDown);
