@@ -28,6 +28,9 @@ export default function App() {
     context.fillRect(x, y, 100, 100);
   }, [x, y]);
 
+  // add event listener to window to listen for arrow keys
+  useEffect(() => {});
+
   return (
     <div className="app">
       <canvas ref={canvasRef} />
