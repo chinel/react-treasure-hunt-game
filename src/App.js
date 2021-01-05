@@ -34,7 +34,7 @@ export default function App() {
 
     function handleKeyDown(e) {
       //console.log(e.keyCode, e);
-      console.log(e.key, e);
+      //sconsole.log(e.key, e);
       if (e.key === "ArrowUp") move("up");
       if (e.key === "ArrowLeft") move("left");
       if (e.key === "ArrowDown") move("down");
