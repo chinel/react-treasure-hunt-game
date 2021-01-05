@@ -35,10 +35,10 @@ export default function App() {
     function handleKeyDown(e) {
       //console.log(e.keyCode, e);
       console.log(e.key, e);
-      if (e.key === "ArrowUp") setY((y) => y - 20);
-      if (e.key === "ArrowLeft") setX((x) => x - 20);
-      if (e.key === "ArrowDown") setY((y) => y + 20);
-      if (e.key === "ArrowRight") setX((x) => x + 20);
+      if (e.key === "ArrowUp") move("up");
+      if (e.key === "ArrowLeft") move("left");
+      if (e.key === "ArrowDown") move("down");
+      if (e.key === "ArrowRight") move("right");
     }
 
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -58,28 +58,28 @@ export default function App() {
       <div className="arrows">
         <button
           onClick={() => {
-            setY((y) => y - 20);
+            move("up");
           }}
         >
           Up
         </button>
         <button
           onClick={() => {
-            setX((x) => x - 20);
+            move("left");
           }}
         >
           Left
         </button>
         <button
           onClick={() => {
-            setY((y) => y + 20);
+            move("down");
           }}
         >
           Down
         </button>
         <button
           onClick={() => {
-            setX((x) => x + 20);
+            move("right");
           }}
         >
           Right
