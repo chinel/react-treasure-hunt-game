@@ -29,7 +29,15 @@ export default function App() {
   }, [x, y]);
 
   // add event listener to window to listen for arrow keys
-  useEffect(() => {});
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    function handleKeyDown(e) {
+      console.log(e.keyCode, e);
+    }
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <div className="app">
