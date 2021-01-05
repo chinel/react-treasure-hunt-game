@@ -44,6 +44,13 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  function move(direction) {
+    if (direction === "up") setY((y) => y - 20);
+    if (direction === "left") setX((x) => x - 20);
+    if (direction === "down") setY((y) => y + 20);
+    if (direction === "right") setX((x) => x + 20);
+  }
+
   return (
     <div className="app">
       <canvas ref={canvasRef} />
