@@ -3,6 +3,10 @@ import "./App.css";
 
 export default function App() {
   const canvasRef = useRef(null);
+  const linkDownRef = useState(null);
+  const linkUpRef = useState(null);
+  const linkLeftRef = useState(null);
+  const linkRightRef = useState(null);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
@@ -25,8 +29,32 @@ export default function App() {
       window.innerHeight,
       window.innerWidth
     ); //this logic here allows us to be able to move the canvas without drawing  a new one
-    context.fillRect(x, y, 100, 100);
+    // context.fillRect(x, y, 100, 100); this draws a 100 by 100 Box
+    context.drawImage(linkDownRef.current, x, y);
   }, [x, y]);
+
+  // add event listener to window to listen for arrow keys
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    function handleKeyDown(e) {
+      //console.log(e.keyCode, e);
+      //sconsole.log(e.key, e);
+      if (e.key === "ArrowUp") move("up");
+      if (e.key === "ArrowLeft") move("left");
+      if (e.key === "ArrowDown") move("down");
+      if (e.key === "ArrowRight") move("right");
+    }
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  function move(direction) {
+    if (direction === "up") setY((y) => y - 20);
+    if (direction === "left") setX((x) => x - 20);
+    if (direction === "down") setY((y) => y + 20);
+    if (direction === "right") setX((x) => x + 20);
+  }
 
   return (
     <div className="app">
@@ -35,28 +63,28 @@ export default function App() {
       <div className="arrows">
         <button
           onClick={() => {
-            setY((y) => y - 20);
+            move("up");
           }}
         >
           Up
         </button>
         <button
           onClick={() => {
-            setX((x) => x - 20);
+            move("left");
           }}
         >
           Left
         </button>
         <button
           onClick={() => {
-            setY((y) => y + 20);
+            move("down");
           }}
         >
           Down
         </button>
         <button
           onClick={() => {
-            setX((x) => x + 20);
+            move("right");
           }}
         >
           Right
@@ -64,10 +92,22 @@ export default function App() {
       </div>
 
       <div className="images">
-        <img src="https://i.imgur.com/JYUB0m3.png" alt="Down" />
-        <img src="https://i.imgur.com/GEXD7bk.gif" alt="Right" />
-        <img src="https://i.imgur.com/XSA2Oom.gif" alt="Up" />
-        <img src="https://i.imgur.com/4LGAZ8t.gif" alt="Left" />
+        <img
+          ref={linkDownRef}
+          src="https://i.imgur.com/JYUB0m3.png"
+          alt="Down"
+        />
+        <img
+          ref={linkRightRef}
+          src="https://i.imgur.com/GEXD7bk.gif"
+          alt="Right"
+        />
+        <img ref={linkUpRef} src="https://i.imgur.com/XSA2Oom.gif" alt="Up" />
+        <img
+          ref={linkLeftRef}
+          src="https://i.imgur.com/4LGAZ8t.gif"
+          alt="Left"
+        />
       </div>
     </div>
   );
