@@ -28,6 +28,29 @@ export default function App() {
     context.fillRect(x, y, 100, 100);
   }, [x, y]);
 
+  // add event listener to window to listen for arrow keys
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    function handleKeyDown(e) {
+      //console.log(e.keyCode, e);
+      //sconsole.log(e.key, e);
+      if (e.key === "ArrowUp") move("up");
+      if (e.key === "ArrowLeft") move("left");
+      if (e.key === "ArrowDown") move("down");
+      if (e.key === "ArrowRight") move("right");
+    }
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  function move(direction) {
+    if (direction === "up") setY((y) => y - 20);
+    if (direction === "left") setX((x) => x - 20);
+    if (direction === "down") setY((y) => y + 20);
+    if (direction === "right") setX((x) => x + 20);
+  }
+
   return (
     <div className="app">
       <canvas ref={canvasRef} />
@@ -35,28 +58,28 @@ export default function App() {
       <div className="arrows">
         <button
           onClick={() => {
-            setY((y) => y - 20);
+            move("up");
           }}
         >
           Up
         </button>
         <button
           onClick={() => {
-            setX((x) => x - 20);
+            move("left");
           }}
         >
           Left
         </button>
         <button
           onClick={() => {
-            setY((y) => y + 20);
+            move("down");
           }}
         >
           Down
         </button>
         <button
           onClick={() => {
-            setX((x) => x + 20);
+            move("right");
           }}
         >
           Right
