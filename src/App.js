@@ -3,6 +3,7 @@ import "./App.css";
 
 export default function App() {
   const canvasRef = useRef(null);
+  const linkDownRef = useState(null);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
@@ -25,7 +26,8 @@ export default function App() {
       window.innerHeight,
       window.innerWidth
     ); //this logic here allows us to be able to move the canvas without drawing  a new one
-    context.fillRect(x, y, 100, 100);
+    // context.fillRect(x, y, 100, 100); this draws a 100 by 100 Box
+    context.drawImage(linkDownRef.current, x, y);
   }, [x, y]);
 
   // add event listener to window to listen for arrow keys
