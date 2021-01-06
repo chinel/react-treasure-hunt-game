@@ -5,6 +5,7 @@ export default function App() {
   const canvasRef = useRef(null);
   const linkDownRef = useState(null);
   const linkUpRef = useState(null);
+  const linkLeftRef = useState(null);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
@@ -97,7 +98,11 @@ export default function App() {
         />
         <img src="https://i.imgur.com/GEXD7bk.gif" alt="Right" />
         <img ref={linkUpRef} src="https://i.imgur.com/XSA2Oom.gif" alt="Up" />
-        <img src="https://i.imgur.com/4LGAZ8t.gif" alt="Left" />
+        <img
+          ref={linkLeftRef}
+          src="https://i.imgur.com/4LGAZ8t.gif"
+          alt="Left"
+        />
       </div>
     </div>
   );
