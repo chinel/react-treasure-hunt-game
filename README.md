@@ -2,7 +2,7 @@
 
 ### [Live Site](https://happy-bhabha-676a03.netlify.app)
 
-![React Treasure Hunt Game](https://i.imgur.com/2bIfY43.png)
+![React Treasure Hunt Game](https://i.imgur.com/mf0Upmn.png)
 
 ## Introduction
 
