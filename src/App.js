@@ -3,8 +3,13 @@ import "./App.css";
 
 export default function App() {
   const canvasRef = useRef(null);
+  const linkDownRef = useState(null);
+  const linkUpRef = useState(null);
+  const linkLeftRef = useState(null);
+  const linkRightRef = useState(null);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
+  const [direction, setDirection] = useState("down");
 
   //set the height and width of the canvas
   //mimics componentDidMount
@@ -25,7 +30,15 @@ export default function App() {
       window.innerHeight,
       window.innerWidth
     ); //this logic here allows us to be able to move the canvas without drawing  a new one
-    context.fillRect(x, y, 100, 100);
+    // context.fillRect(x, y, 100, 100); this draws a 100 by 100 Box
+
+    let theLinkRef;
+    if (direction === "down") theLinkRef = linkDownRef;
+    if (direction === "up") theLinkRef = linkUpRef;
+    if (direction === "left") theLinkRef = linkLeftRef;
+    if (direction === "right") theLinkRef = linkRightRef;
+
+    context.drawImage(theLinkRef.current, x, y);
   }, [x, y]);
 
   // add event listener to window to listen for arrow keys
@@ -45,6 +58,7 @@ export default function App() {
   }, []);
 
   function move(direction) {
+    setDirection(direction);
     if (direction === "up") setY((y) => y - 20);
     if (direction === "left") setX((x) => x - 20);
     if (direction === "down") setY((y) => y + 20);
@@ -87,10 +101,22 @@ export default function App() {
       </div>
 
       <div className="images">
-        <img src="https://i.imgur.com/JYUB0m3.png" alt="Down" />
-        <img src="https://i.imgur.com/GEXD7bk.gif" alt="Right" />
-        <img src="https://i.imgur.com/XSA2Oom.gif" alt="Up" />
-        <img src="https://i.imgur.com/4LGAZ8t.gif" alt="Left" />
+        <img
+          ref={linkDownRef}
+          src="https://i.imgur.com/JYUB0m3.png"
+          alt="Down"
+        />
+        <img
+          ref={linkRightRef}
+          src="https://i.imgur.com/GEXD7bk.gif"
+          alt="Right"
+        />
+        <img ref={linkUpRef} src="https://i.imgur.com/XSA2Oom.gif" alt="Up" />
+        <img
+          ref={linkLeftRef}
+          src="https://i.imgur.com/4LGAZ8t.gif"
+          alt="Left"
+        />
       </div>
     </div>
   );
