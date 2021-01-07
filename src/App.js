@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
+import useMovement from "./useMovement";
 
 export default function App() {
   const canvasRef = useRef(null);
@@ -7,7 +8,7 @@ export default function App() {
   const linkUpRef = useState(null);
   const linkLeftRef = useState(null);
   const linkRightRef = useState(null);
-
+  const { x, y, direction, move } = useMovement();
 
   //set the height and width of the canvas
   //mimics componentDidMount
@@ -38,7 +39,6 @@ export default function App() {
 
     context.drawImage(theLinkRef.current, x, y);
   }, [x, y]);
-
 
   return (
     <div className="app">
