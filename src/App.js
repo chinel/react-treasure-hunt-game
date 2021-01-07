@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./App.css";
 import useMovement from "./useMovement";
 
 export default function App() {
   const canvasRef = useRef(null);
-  const linkDownRef = useState(null);
-  const linkUpRef = useState(null);
-  const linkLeftRef = useState(null);
-  const linkRightRef = useState(null);
+  const linkDownRef = useRef(null);
+  const linkUpRef = useRef(null);
+  const linkLeftRef = useRef(null);
+  const linkRightRef = useRef(null);
   const { x, y, direction, move } = useMovement();
 
   //set the height and width of the canvas
