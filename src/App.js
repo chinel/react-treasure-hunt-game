@@ -58,6 +58,7 @@ export default function App() {
   }, []);
 
   function move(direction) {
+    setDirection(direction);
     if (direction === "up") setY((y) => y - 20);
     if (direction === "left") setX((x) => x - 20);
     if (direction === "down") setY((y) => y + 20);
