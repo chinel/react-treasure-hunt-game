@@ -9,6 +9,7 @@ export default function App() {
   const linkRightRef = useState(null);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
+  const [direction, setDirection] = useState("down");
 
   //set the height and width of the canvas
   //mimics componentDidMount
@@ -30,7 +31,14 @@ export default function App() {
       window.innerWidth
     ); //this logic here allows us to be able to move the canvas without drawing  a new one
     // context.fillRect(x, y, 100, 100); this draws a 100 by 100 Box
-    context.drawImage(linkDownRef.current, x, y);
+
+    let theLinkRef;
+    if (direction === "down") theLinkRef = linkDownRef;
+    if (direction === "up") theLinkRef = linkUpRef;
+    if (direction === "left") theLinkRef = linkLeftRef;
+    if (direction === "right") theLinkRef = linkRightRef;
+
+    context.drawImage(theLinkRef.current, x, y);
   }, [x, y]);
 
   // add event listener to window to listen for arrow keys
@@ -50,6 +58,7 @@ export default function App() {
   }, []);
 
   function move(direction) {
+    setDirection(direction);
     if (direction === "up") setY((y) => y - 20);
     if (direction === "left") setX((x) => x - 20);
     if (direction === "down") setY((y) => y + 20);
